@@ -7,15 +7,19 @@ import { Outlet } from "react-router";
 const MainLayout = () => {
   return (
     <>
-      <Container> 
-        <Navbar></Navbar> 
-      </Container>
-        <div className="min-h-[calc(100vh - 116px)]">
-            <Outlet></Outlet>
-        </div>
-      <Container>
-        <Footer></Footer>
-      </Container>
+      <div className="bg-base-100 shadow-sm">
+        <Container>
+          <Navbar></Navbar>
+        </Container>
+      </div>
+      <div className="">
+        <Outlet></Outlet>
+      </div>
+      <div className="bg-base-200 text-base-content">
+        <Container>
+          <Footer></Footer>
+        </Container>
+      </div>
     </>
   );
 };

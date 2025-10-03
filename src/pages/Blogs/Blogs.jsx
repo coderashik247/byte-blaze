@@ -1,16 +1,19 @@
 import React from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigation } from "react-router";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import Loader from "../../components/Loader/Loader";
 
 const Blogs = () => {
     const blogs = useLoaderData();
-    // const {id, title, description, readable_publish_date, cover_image} = blogs
+    const navigation = useNavigation();
+    if(navigation.state === "loading"){
+      return <Loader></Loader>
+    }
   return (
     <section className="">
       <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-        <a
-          rel="noopener noreferrer"
-          href="#"
+        <Link
+          to={blogs[0].id}
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 "
         >
           <img
@@ -20,17 +23,16 @@ const Blogs = () => {
           />
           <div className="p-6 space-y-2 lg:col-span-5">
             <h3 className="text-2xl font-semibold sm:text-4xl group-hover:underline group-focus:underline">
-              Noster tincidunt reprimique ad pro
+              {blogs[0].title}
             </h3>
             <span className="text-xs text-gray-400 dark:text-gray-600">
-              February 19, 2021
+              {new Date(blogs[0].readable_publish_date).toLocaleDateString()}
             </span>
             <p>
-              Ei delenit sensibus liberavisse pri. Quod suscipit no nam. Est in
-              graece fuisset, eos affert putent doctus id.
+              {blogs[0].description}
             </p>
           </div>
-        </a>
+        </Link>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 ">
             {
                 blogs.slice(1,19).map(blog => <BlogCard blog={blog}></BlogCard>)

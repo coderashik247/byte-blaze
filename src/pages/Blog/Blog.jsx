@@ -1,8 +1,14 @@
 import { useState } from "react";
 import { Link, Outlet, useLoaderData } from "react-router";
+import { MdBookmarkAdded } from "react-icons/md";
+import { saveBlogs } from "../../utils";
 
 const Blog = () => {
-    const [tabIndex, setTabIndex] = useState(0)
+  const [tabIndex, setTabIndex] = useState(0)
+
+  const handleBookmark = (blog) =>{
+    saveBlogs(blog);
+  }
   const blog = useLoaderData();
   const {
     title,
@@ -69,6 +75,9 @@ const Blog = () => {
               </svg>
               <span>Author</span>
             </Link>
+            <div onClick={() => handleBookmark(blog)} className="flex justify-center items-center rounded-full bg-primary/20 p-2 hover:scale-110 hover:bg-primary hover:cursor-pointer">
+               <MdBookmarkAdded className="text-secondary " size={25} />
+            </div>
           </div>
         </div>
         <Outlet/>

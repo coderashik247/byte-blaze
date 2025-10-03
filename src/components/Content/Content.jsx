@@ -16,7 +16,7 @@ const Content = () => {
         />
         <div className="flex flex-wrap py-2 gap-2 border-t border-dashed dark:border-gray-600">
           {tags.map((tag) => (
-            <a
+            <a key={tag}
               rel="noopener noreferrer"
               href="#"
               className="px-3 py-1 rounded-sm hover:underline "
